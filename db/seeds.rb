@@ -1,9 +1,19 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+def populate_states_and_cities
+  if State.none?
+
+    path = Rails.root.join('db', 'assets', 'states_cities.json')
+    data = JSON.parse(File.open(path).read)
+
+    data["estados"].each do |state_json|
+      state = State.create!(name: state_json["nome"], acronym: state_json["sigla"])
+
+      state_json["cidades"].each do |city|
+        state.cities.create!(name: city)
+      end
+    end
+  end
+end
+
+ActiveRecord::Base.transaction do
+  populate_states_and_cities
+end
