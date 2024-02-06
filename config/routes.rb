@@ -9,5 +9,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
-  root "home#index"
+  resources :citizens, except: [:destroy] do
+    collection do
+      get :data
+    end
+  end
+
+  root "citizens#index"
 end

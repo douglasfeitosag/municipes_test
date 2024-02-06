@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      state:
+        one: Estado
+        other: Estados
+    attributes:
+      state:
+        name: Nome

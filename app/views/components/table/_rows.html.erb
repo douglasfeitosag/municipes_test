@@ -1,0 +1,16 @@
+
+  <% rows.each do |row| %>
+    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+      <% row.each_with_index do |value, index| %>
+        <% if index == 0 %>
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= value %>
+          </th>
+        <% else %>
+          <td class="px-6 py-4">
+            <%= value %>
+          </td>
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>

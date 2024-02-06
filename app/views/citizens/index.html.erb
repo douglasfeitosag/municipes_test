@@ -1,0 +1,11 @@
+<div class="grid gap-10" data-controller="citizens">
+  <%= form_for(:citizens, url: citizens_path, method: :get) do %>
+    <%= render "components/form/inputs/search_input" %>
+  <% end %>
+
+  <div class="flex">
+    <%= render partial: "components/link", locals: { name: "Novo", url: new_citizen_path } %>
+  </div>
+
+  <%= render partial: "components/table", locals: { headers: %w(ID Nome E-mail), rows: [] } %>
+</div>

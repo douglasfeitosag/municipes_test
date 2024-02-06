@@ -9,6 +9,8 @@ COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
 
+RUN npm install flowbite
+
 COPY . .
 
 ENTRYPOINT ["/app/bin/docker-entrypoint"]

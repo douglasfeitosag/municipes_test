@@ -5,8 +5,9 @@ RSpec.describe State, type: :model do
     subject { described_class.new(name: "Goiás", acronym: "GO") }
 
     it { should validate_presence_of(:name) }
-    it { should validate_uniqueness_of(:name) }
     it { should validate_presence_of(:acronym) }
+
+    it { should validate_uniqueness_of(:name) }
     it { should validate_uniqueness_of(:acronym) }
   end
 

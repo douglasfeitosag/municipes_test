@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    models:
+      citizen:
+        one: Citizen
+        other: Citizen
+    attributes:
+      citizen:
+        name: Name

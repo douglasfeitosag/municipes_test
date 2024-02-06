@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      citizen:
+        one: Munícipe
+        other: Munícipes
+    attributes:
+      citizen:
+        name: Nome
+        cpf: CPF
+        cns: CNS
+        email: E-mail
