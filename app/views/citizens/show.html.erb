@@ -53,6 +53,10 @@
     <div>
       <%= render partial: "components/card", locals: { title: t("activerecord.attributes.address.city_id"), content: address.city } %>
     </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.address.ibge_code"), content: address.ibge_code } %>
+    </div>
   </div>
 
   <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">

@@ -7,14 +7,10 @@ class SmsSender::Twilio < BaseService
   end
 
   def call
-    twilio_sid = Rails.application.credentials.twilio[:account_sid]
-    twilio_token = Rails.application.credentials.twilio[:auth_token]
-    twilio_number = Rails.application.credentials.twilio[:number]
-
-    client = Twilio::REST::Client.new(twilio_sid, twilio_token)
+    client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
 
     client.messages.create(
-      from: twilio_number,
+      from: ENV["TWILIO_NUMBER"],
       to: to,
       body: body
     )

@@ -26,5 +26,17 @@ module MunicipesTest
     # config.eager_load_paths << Rails.root.join("services")
 
     config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      user_name: 'apikey',
+      password: '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',
+      domain: 'yourdomain.com',
+      address: 'smtp.sendgrid.net',
+      port: 587,
+      authentication: :plain,
+      enable_starttls_auto: true
+    }
   end
 end

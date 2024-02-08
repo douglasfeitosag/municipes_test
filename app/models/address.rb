@@ -5,4 +5,8 @@ class Address < ApplicationRecord
 
   validates :zipcode, :street, :neighbourhood, presence: true
   validates_associated :state, :city
+
+  before_validation do
+    self.zipcode = zipcode&.scan(/[+\d]/)&.join("")
+  end
 end

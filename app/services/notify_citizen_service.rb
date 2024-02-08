@@ -10,13 +10,21 @@ class NotifyCitizenService < BaseService
   end
 
   def call
+    email = @citizen.email
+
     case type
     when :created
-      send_sms(sms_message_created)
+      CitizenMailer.with(email: email, message: message_created).email.deliver_later
+
+      send_sms(message_created)
     when :activated
-      send_sms(send_sms_activated)
+      CitizenMailer.with(email: email, message: message_activated).email.deliver_later
+
+      send_sms(message_activated)
     when :inactivated
-      send_sms(send_sms_inactivated)
+      CitizenMailer.with(email: email, message: message_inactivated).email.deliver_later
+
+      send_sms(message_inactivated)
     end
   end
 
@@ -28,15 +36,15 @@ class NotifyCitizenService < BaseService
     sms_service.call(to: @citizen.phone, body: message)
   end
 
-  def sms_message_created
+  def message_created
     I18n.t("messages.sms_sender.welcome", name: @citizen.name)
   end
 
-  def send_sms_activated
+  def message_activated
     I18n.t("messages.sms_sender.activated", name: @citizen.name)
   end
 
-  def send_sms_inactivated
+  def message_inactivated
     I18n.t("messages.sms_sender.inactivated", name: @citizen.name)
   end
 end

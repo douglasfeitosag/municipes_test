@@ -22,7 +22,7 @@ def create_citizens
     city = City.find_by_name("Goiânia")
     state = city.state
 
-    citizen = Citizen.create!(
+    citizen = Citizen.new(
       name: "Douglas",
       cpf: Faker::CPF.numeric,
       cns: Faker::Number.number,
@@ -30,18 +30,25 @@ def create_citizens
       birthdate: Faker::Date.birthday,
       phone: "+5511999999999"
     )
-  end
 
-  Address.create!(
-    citizen: citizen,
-    state: state,
-    city: city,
-    zipcode: "75000000",
-    street: "Rua 1",
-    complement: "Apto 1",
-    neighbourhood: "Centro",
-    ibge_code: "123"
-  )
+    path = Rails.root.join("spec", "fixtures", "avatar.png")
+    File.open(path) do |f|
+      citizen.photo = f
+    end
+
+    citizen.save!
+
+    Address.create!(
+      citizen: citizen,
+      state: state,
+      city: city,
+      zipcode: "75000000",
+      street: "Rua 1",
+      complement: "Apto 1",
+      neighbourhood: "Centro",
+      ibge_code: "123"
+    )
+  end
 end
 
 ActiveRecord::Base.transaction do
