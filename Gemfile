@@ -14,15 +14,15 @@ gem "redis", ">= 4.0.1"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "devise"
-gem 'sassc-rails'
+gem "sassc-rails"
 gem "tailwindcss-rails", "~> 2.3"
-gem 'email_validator'
-gem 'jquery-mask-plugin'
+gem "email_validator"
+gem "jquery-mask-plugin"
 gem "validators"
 gem "cpf_cnpj"
 gem "root_domain"
 gem "sidekiq"
-gem 'twilio-ruby'
+gem "twilio-ruby"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
@@ -32,7 +32,8 @@ group :development, :test do
   gem "shoulda-matchers"
   gem "binding_of_caller"
   gem "better_errors"
-  gem 'cpf_faker'
+  gem "cpf_faker"
+  gem "pry"
 end
 
 group :development do

@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      address:
+        one: Endereço
+        other: Endereços
+    attributes:
+      address:
+        zipcode: CEP
+        street: Logradouro
+        complement: Complemento
+        neighbourhood: Bairro
+        ibge_code: Código IBGE
+        state_id: Estado
+        city_id: Cidade

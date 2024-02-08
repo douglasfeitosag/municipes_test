@@ -1,1 +1,4 @@
-<%= render "form", citizen: @citizen, states: @states, cities: @cities %>
+<div class="grid gap-10">
+  <%= render "components/link", name: "Voltar", url: citizens_path %>
+  <%= render "form", citizen: @citizen, states: @states, cities: @cities %>
+</div>

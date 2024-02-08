@@ -1,4 +1,8 @@
 class CitizenUpdateService < ::BaseService
+  def self.call(citizen, citizen_params)
+    new(citizen, citizen_params).call
+  end
+
   def initialize(citizen, citizen_params)
     @citizen = citizen
     @citizen_params = citizen_params

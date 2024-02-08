@@ -13,3 +13,5 @@ pt-BR:
         cns: CNS
         email: E-mail
         phone: Telefone
+        state_id: Estado
+        city_id: Cidade

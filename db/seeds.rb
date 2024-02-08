@@ -1,6 +1,6 @@
 def populate_states_and_cities
   if State.none?
-    path = Rails.root.join('db', 'assets', 'states_cities.json')
+    path = Rails.root.join("db", "assets", "states_cities.json")
     data = JSON.parse(File.open(path).read)
 
     data["estados"].each do |state_json|
@@ -22,9 +22,7 @@ def create_citizens
     city = City.find_by_name("Goiânia")
     state = city.state
 
-    Citizen.create!(
-      state: state,
-      city: city,
+    citizen = Citizen.create!(
       name: "Douglas",
       cpf: Faker::CPF.numeric,
       cns: Faker::Number.number,
@@ -33,6 +31,17 @@ def create_citizens
       phone: "+5511999999999"
     )
   end
+
+  Address.create!(
+    citizen: citizen,
+    state: state,
+    city: city,
+    zipcode: "75000000",
+    street: "Rua 1",
+    complement: "Apto 1",
+    neighbourhood: "Centro",
+    ibge_code: "123"
+  )
 end
 
 ActiveRecord::Base.transaction do

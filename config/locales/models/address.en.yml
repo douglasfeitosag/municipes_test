@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      address:
+        one: Address
+        other: Addresses
+    attributes:
+      address:
+        zipcode: Zipcode
+        street: Street
+        complement: Complement
+        neighbourhood: Neighbourhood
+        ibge_code: IBGE Code
+        state_id: State
+        city_id: City

@@ -1,9 +1,7 @@
 FactoryBot.define do
   factory :citizen do
-    Faker::Config.locale = 'pt-BR'
+    Faker::Config.locale = "pt-BR"
 
-    state
-    city
     name { "Douglas" }
     cpf { Faker::CPF.numeric }
     cns { Faker::Number.number }

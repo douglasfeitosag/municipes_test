@@ -16,8 +16,11 @@ export default class extends Controller {
     }
 
     handleClick = (event) => {
+        const target = window.$(event.target)
         const row = window.$(event.target).parent()
-        const id = row.data("id")
+
+        const id = target.data("id") ?? row.data("id")
+
         window.location.href = `/citizens/${id}/edit`
     }
 

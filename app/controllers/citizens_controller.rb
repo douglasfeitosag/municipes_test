@@ -1,6 +1,6 @@
 class CitizensController < ApplicationController
   def data
-    @citizens = Citizen.all.collect { |c| [c.id, c.name, c.cpf, c.email] }
+    @citizens = Citizen.search(search_params[:q]).collect { |c| [c.id, c.name, c.cpf, c.email] }
 
     render layout: false, partial: "components/table/rows", locals: { rows: @citizens }
   end
@@ -8,7 +8,7 @@ class CitizensController < ApplicationController
   def cities
     @cities = City.where(city_params).collect { |c| [c.name, c.id] }
 
-    render layout: false, partial: "components/form/select", locals: { name: "citizen[city_id]", collection: @cities, selected: nil, attrs: {} }
+    render layout: false, partial: "components/form/select", locals: { name: "citizen[address_attributes][city_id]", collection: @cities, selected: nil, attrs: {} }
   end
 
   def new
@@ -36,7 +36,7 @@ class CitizensController < ApplicationController
   def edit
     @citizen = Citizen.find(params[:id])
     @states = State.all.collect { |c| [c.name, c.id] }
-    @cities = City.where(state_id: @citizen.state_id).collect { |c| [c.name, c.id] }
+    @cities = City.where(state_id: @citizen.address.state_id).collect { |c| [c.name, c.id] }
   end
 
   def update
@@ -55,10 +55,15 @@ class CitizensController < ApplicationController
   private
 
   def citizen_params
-    params.require(:citizen).permit(:name, :email, :cpf, :cns, :phone, :birthdate, :state_id, :city_id, :active)
+    params.require(:citizen).permit(:name, :email, :cpf, :cns, :phone, :birthdate, :active, address_attributes: [
+      :id, :state_id, :city_id, :zipcode, :street, :neighbourhood, :ibge_code])
   end
 
   def city_params
     params.permit(:state_id)
+  end
+
+  def search_params
+    params.permit(:q)
   end
 end

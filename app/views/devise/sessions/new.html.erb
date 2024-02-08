@@ -1,20 +1,20 @@
 <div class="grid justify-center m-10">
-  <h2><%= I18n.t("sessions.new.title") %></h2>
+  <h2><%= I18n.t("views.sessions.new.title") %></h2>
 </div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "max-w-sm mx-auto" }) do |f| %>
   <div class="mb-5">
-    <%= render partial: 'components/form/inputs/email_field',
+    <%= render partial: "components/form/inputs/email_field",
                locals: { f: f, name: :email, attrs: { autofocus: true, autocomplete: "email" } } %>
   </div>
 
   <div class="mb-5">
-    <%= render partial: 'components/form/inputs/password_field',
+    <%= render partial: "components/form/inputs/password_field",
                locals: { f: f, name: :password, attrs: { autofocus: true, autocomplete: "current-password" } } %>
   </div>
 
   <div class="actions">
-    <%= render partial: 'components/form/button',
-               locals: { f: f, name: :login } %>
+    <%= render partial: "components/form/button",
+               locals: { f: f, name: :login, type: "submit" } %>
   </div>
 <% end %>
