@@ -15,6 +15,12 @@ export default class extends Controller {
         this.fetchData(searchTerm)
     }
 
+    handleClick = (event) => {
+        const row = window.$(event.target).parent()
+        const id = row.data("id")
+        window.location.href = `/citizens/${id}/edit`
+    }
+
     fetchData = (searchTerm) => {
         fetch(`/citizens/data?q=${searchTerm}`)
             .then((response) => response.text())
@@ -22,4 +28,6 @@ export default class extends Controller {
                 this.element.querySelector("[data-target='rows']").innerHTML = data
             })
     }
+
+
 }

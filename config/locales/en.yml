@@ -1,5 +1,9 @@
 ---
 en:
+  actions:
+    new: New
+    save: Save
+    search: Search
   activerecord:
     errors:
       messages:
@@ -152,6 +156,14 @@ en:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+  messages:
+    sms_sender:
+      activated: "Your user has been reactivated, %{name}."
+      inactivated: "Your user has been deactivated, %{name}."
+      welcome: "Welcome %{name}! You have been successfully registered."
+    success:
+      created: "Successfully created"
+      saved: "Successfully saved"
   number:
     currency:
       format:

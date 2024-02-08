@@ -6,4 +6,10 @@ en:
         other: Citizen
     attributes:
       citizen:
+        active: Active
+        id: ID
         name: Name
+        cpf: CPF
+        cns: CNS
+        email: Email
+        phone: Phone

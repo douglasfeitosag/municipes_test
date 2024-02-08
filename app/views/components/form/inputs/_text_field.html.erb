@@ -1,4 +1,4 @@
-<%= f.label name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+<%= render partial: "components/form/label", locals: { f: f, name: name } %>
 <%= f.text_field name,
                   {
                     **attrs,

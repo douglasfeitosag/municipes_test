@@ -1,5 +1,9 @@
 ---
 pt-BR:
+  actions:
+    new: Novo
+    save: Salvar
+    search: Pesquisar
   activerecord:
     errors:
       messages:
@@ -152,6 +156,14 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+  messages:
+    sms_sender:
+      activated: "Seu usuário foi ativado novamente, %{name}."
+      inactivated: "Seu usuário foi inativado, %{name}."
+      welcome: "Bem-vindo %{name}! Você foi cadastrado com sucesso."
+    success:
+      created: "Criado com sucesso"
+      saved: "Salvo com sucesso"
   number:
     currency:
       format:

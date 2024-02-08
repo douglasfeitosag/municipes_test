@@ -6,7 +6,10 @@ pt-BR:
         other: Munícipes
     attributes:
       citizen:
+        active: Ativo
+        id: ID
         name: Nome
         cpf: CPF
         cns: CNS
         email: E-mail
+        phone: Telefone

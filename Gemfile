@@ -18,6 +18,11 @@ gem 'sassc-rails'
 gem "tailwindcss-rails", "~> 2.3"
 gem 'email_validator'
 gem 'jquery-mask-plugin'
+gem "validators"
+gem "cpf_cnpj"
+gem "root_domain"
+gem "sidekiq"
+gem 'twilio-ruby'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
