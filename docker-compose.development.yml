@@ -12,8 +12,11 @@ services:
     depends_on:
       - db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SEND_GRID_USERNAME: ${SEND_GRID_USERNAME}
+      SEND_GRID_APIKEY: ${SEND_GRID_APIKEY}
+      SEND_GRID_DOMAIN: ${SEND_GRID_DOMAIN}
     command: sh -c "./rails.sh"
 
   redis:
@@ -38,11 +41,14 @@ services:
       dockerfile: ./docker/development/Dockerfile
     command: bundle exec sidekiq -C config/sidekiq.yml
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      TWILIO_ACCOUNT_SID: ACb851bd1cfeb4e18768055a99e3ca0318
-      TWILIO_AUTH_TOKEN: 65f9c78f716ada72b81555655703ab96
-      TWILIO_NUMBER: +19302069562
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_NUMBER: ${TWILIO_NUMBER}
+      SEND_GRID_USERNAME: ${SEND_GRID_USERNAME}
+      SEND_GRID_APIKEY: ${SEND_GRID_APIKEY}
+      SEND_GRID_DOMAIN: ${SEND_GRID_DOMAIN}
     volumes:
       - .:/data
     depends_on:

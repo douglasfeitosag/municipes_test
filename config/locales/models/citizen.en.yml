@@ -12,5 +12,6 @@ en:
         cpf: CPF
         cns: CNS
         email: Email
+        birthdate: Birthdate
         phone: Phone
         photo: Foto

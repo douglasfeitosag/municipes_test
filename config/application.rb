@@ -30,10 +30,10 @@ module MunicipesTest
     config.action_mailer.raise_delivery_errors = true
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      user_name: 'apikey',
-      password: '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',
-      domain: 'yourdomain.com',
-      address: 'smtp.sendgrid.net',
+      user_name: ENV["SEND_GRID_USERNAME"],
+      password: ENV["SEND_GRID_APIKEY"],
+      domain: "yourdomain.com",
+      address: "smtp.sendgrid.net",
       port: 587,
       authentication: :plain,
       enable_starttls_auto: true

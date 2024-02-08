@@ -3,6 +3,10 @@ class CitizenDecorator < Draper::Decorator
 
   delegate_all
 
+  def birthdate
+    I18n.l(object.birthdate, locale: 'pt-BR', format: :default)
+  end
+
   def address
     object.address.decorate
   end
@@ -15,7 +19,7 @@ class CitizenDecorator < Draper::Decorator
     CPF.new(object.cpf).formatted
   end
 
-  def active
+  def active_html
     if object.active?
       content_tag :span do
         content_tag :svg, class: "w-6 h-6 text-gray-800 dark:text-white", aria: { hidden: "true" }, xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24" do

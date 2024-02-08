@@ -13,6 +13,12 @@
   </div>
 
   <div class="mb-5">
+    <%= render partial: "components/form/label", locals: { f: f, name: :birthdate } %>
+    <%= render partial: "components/form/inputs/text_field", locals: { f: f, name: :birthdate, attrs: { data: { masks_target: "date" } } } %>
+    <%= errors_for(f, :birthdate) %>
+  </div>
+
+  <div class="mb-5">
     <%= render partial: "components/form/label", locals: { f: f, name: :cns } %>
     <%= render partial: "components/form/inputs/text_field", locals: { f: f, name: :cns, attrs: {} } %>
     <%= errors_for(f, :cns) %>
@@ -30,7 +36,7 @@
     <%= errors_for(f, :phone) %>
   </div>
 
-  <%= f.fields_for :address do |ff| %>
+  <%= f.fields_for :address, citizen.address || Address.new do |ff| %>
     <div class="mb-5">
       <%= render partial: "components/form/label", locals: { f: ff, name: :zipcode } %>
       <%= render partial: "components/form/inputs/text_field", locals: { f: ff, name: :zipcode, attrs: { data: { masks_target: "zipcode" } } } %>

@@ -11,6 +11,10 @@
     </div>
 
     <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.birthdate"), content: @citizen.birthdate } %>
+    </div>
+
+    <div>
       <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.cpf"), content: @citizen.cpf } %>
     </div>
 
@@ -23,7 +27,7 @@
     </div>
 
     <div>
-      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.active"), content: @citizen.active } %>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.active"), content: @citizen.active_html } %>
     </div>
   </div>
 

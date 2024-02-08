@@ -16,6 +16,7 @@ export default class extends Controller {
         window.$("[data-masks-target='phone']").mask("+55 (99) 9 9999-9999")
         window.$("[data-masks-target='cpf']").mask("000.000.000-00")
         window.$("[data-masks-target='zipcode']").mask("99999-999")
+        window.$("[data-masks-target='date']").mask("99/99/9999")
     }
 
     fetchCities = (id) => {

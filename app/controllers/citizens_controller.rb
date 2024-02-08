@@ -28,7 +28,7 @@ class CitizensController < ApplicationController
   def create
     @citizen = Citizen.new(citizen_params)
 
-    service = CitizenCreateService.new(citizen_params)
+    service = CitizenCreateService.new(@citizen)
     result = service.call
 
     if result[:success]
@@ -46,7 +46,7 @@ class CitizensController < ApplicationController
   end
 
   def edit
-    @citizen = Citizen.find(params[:id])
+    @citizen = Citizen.find(params[:id]).decorate
     @states = State.all.collect { |c| [c.name, c.id] }
     @cities = City.where(state_id: @citizen.address.state_id).collect { |c| [c.name, c.id] }
   end

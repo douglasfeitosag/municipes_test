@@ -12,6 +12,7 @@ pt-BR:
         cpf: CPF
         cns: CNS
         email: E-mail
+        birthdate: Data de Nascimento
         phone: Telefone
         state_id: Estado
         city_id: Cidade
