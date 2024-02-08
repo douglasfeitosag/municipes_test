@@ -1,73 +1,107 @@
 <%= form_for(citizen, method: citizen.new_record? ? :post : :put,
-             html: { class: "grid", data: { controller: "citizen", turbo: false } }) do |f| %>
+             html: { multipart: true, class: "grid", data: { controller: "citizen", turbo: false } }) do |f| %>
   <div class="mb-5">
     <%= render partial: "components/form/label", locals: { f: f, name: :name } %>
     <%= render partial: "components/form/inputs/text_field", locals: { f: f, name: :name, attrs: {} } %>
+    <%= errors_for(f, :name) %>
   </div>
+
   <div class="mb-5">
     <%= render partial: "components/form/label", locals: { f: f, name: :cpf } %>
     <%= render partial: "components/form/inputs/text_field", locals: { f: f, name: :cpf, attrs: { data: { masks_target: "cpf" } } } %>
+    <%= errors_for(f, :cpf) %>
   </div>
+
   <div class="mb-5">
     <%= render partial: "components/form/label", locals: { f: f, name: :cns } %>
     <%= render partial: "components/form/inputs/text_field", locals: { f: f, name: :cns, attrs: {} } %>
+    <%= errors_for(f, :cns) %>
   </div>
+
   <div class="mb-5">
     <%= render partial: "components/form/label", locals: { f: f, name: :email } %>
     <%= render partial: "components/form/inputs/email_field", locals: { f: f, name: :email, attrs: { data: { masks_target: "email" } } } %>
+    <%= errors_for(f, :email) %>
   </div>
+
   <div class="mb-5">
     <%= render partial: "components/form/label", locals: { f: f, name: :phone } %>
     <%= render partial: "components/form/inputs/text_field", locals: { f: f, name: :phone, attrs: { data: { masks_target: "phone" } } } %>
+    <%= errors_for(f, :phone) %>
   </div>
 
   <%= f.fields_for :address do |ff| %>
     <div class="mb-5">
       <%= render partial: "components/form/label", locals: { f: ff, name: :zipcode } %>
       <%= render partial: "components/form/inputs/text_field", locals: { f: ff, name: :zipcode, attrs: { data: { masks_target: "zipcode" } } } %>
+      <%= errors_for(ff, :zipcode) %>
     </div>
+
     <div class="mb-5">
       <%= render partial: "components/form/label", locals: { f: ff, name: :street } %>
       <%= render partial: "components/form/inputs/text_field", locals: { f: ff, name: :street, attrs: {} } %>
+      <%= errors_for(ff, :street) %>
     </div>
+
     <div class="mb-5">
       <%= render partial: "components/form/label", locals: { f: ff, name: :complement } %>
       <%= render partial: "components/form/inputs/text_field", locals: { f: ff, name: :complement, attrs: {} } %>
+      <%= errors_for(ff, :complement) %>
     </div>
+
     <div class="mb-5">
       <%= render partial: "components/form/label", locals: { f: ff, name: :neighbourhood } %>
       <%= render partial: "components/form/inputs/text_field", locals: { f: ff, name: :neighbourhood, attrs: {} } %>
+      <%= errors_for(ff, :neighbourhood) %>
     </div>
+
     <div class="mb-5">
       <%= render partial: "components/form/label", locals: { f: ff, name: :ibge_code } %>
       <%= render partial: "components/form/inputs/text_field", locals: { f: ff, name: :ibge_code, attrs: {} } %>
+      <%= errors_for(ff, :ibge_code) %>
     </div>
+
     <div class="mb-5">
       <%= render partial: "components/form/label", locals: { f: ff, name: :state_id } %>
       <%= render partial: "components/form/select", locals: {
-        f: f,
-        name: "citizen[address_attributes][state_id]",
+        object_name: "citizen[address_attributes]",
+        name: :state_id,
         collection: states,
         selected: ff.object.state_id,
         attrs: { data: { action: "change->citizen#handleStateChange" } }
       } %>
+      <%= errors_for(ff, :city_id) %>
     </div>
+
     <div class="mb-5">
       <%= render partial: "components/form/label", locals: { f: ff, name: :city_id } %>
       <%= render partial: "components/form/select", locals: {
-        f: f,
-        name: "citizen[address_attributes][city_id]",
+        object_name: "citizen[address_attributes]",
+        name: :city_id,
         collection: cities,
         selected: ff.object.city_id,
         attrs: {}
       } %>
+      <%= errors_for(ff, :city_id) %>
     </div>
   <% end %>
 
   <div class="mb-5">
+    <%= render partial: "components/form/label", locals: { f: f, name: :photo } %>
+    <%= render partial: "components/form/inputs/file", locals: {
+      object_name: "citizen",
+      name: :photo,
+      attrs: {}
+    } %>
+    <%= errors_for(f, :photo) %>
+  </div>
+
+  <div class="mb-5">
     <%= render partial: "components/form/label", locals: { f: f, name: :active } %>
     <%= render partial: "components/form/inputs/checkbox", locals: { f: f, name: :active, attrs: {} } %>
+    <%= errors_for(f, :active) %>
   </div>
+
   <div class="flex">
     <%= render partial: "components/form/button", locals: { f: f, name: t("actions.save"), type: "submit" } %>
   </div>

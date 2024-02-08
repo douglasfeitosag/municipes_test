@@ -1,6 +1,6 @@
 class CitizensController < ApplicationController
   def data
-    @citizens = Citizen.search(search_params[:q]).collect { |c| [c.id, c.name, c.cpf, c.email] }
+    @citizens = Citizen.search(search_params[:q]).decorate.collect { |c| [c.id, c.name, c.cpf, c.email] }
 
     render layout: false, partial: "components/table/rows", locals: { rows: @citizens }
   end
@@ -8,7 +8,15 @@ class CitizensController < ApplicationController
   def cities
     @cities = City.where(city_params).collect { |c| [c.name, c.id] }
 
-    render layout: false, partial: "components/form/select", locals: { name: "citizen[address_attributes][city_id]", collection: @cities, selected: nil, attrs: {} }
+    render layout: false,
+           partial: "components/form/select",
+           locals: {
+             object_name: "citizen[address_attributes]",
+             name: "city_id",
+             collection: @cities,
+             selected: nil,
+             attrs: {}
+           }
   end
 
   def new
@@ -27,10 +35,14 @@ class CitizensController < ApplicationController
       redirect_to citizens_path, notice: t("messages.success.created")
     else
       @states = State.all.collect { |c| [c.name, c.id] }
-      @cities = City.where(state_id: @citizen.state_id).collect { |c| [c.name, c.id] }
+      @cities = City.where(state_id: @citizen.address.state_id).collect { |c| [c.name, c.id] }
 
       render :new
     end
+  end
+
+  def show
+    @citizen = Citizen.find(params[:id]).decorate
   end
 
   def edit
@@ -48,6 +60,9 @@ class CitizensController < ApplicationController
     if result[:success]
       redirect_to citizens_path, notice: t("messages.success.saved")
     else
+      @states = State.all.collect { |c| [c.name, c.id] }
+      @cities = City.where(state_id: @citizen.address.state_id).collect { |c| [c.name, c.id] }
+
       render :edit
     end
   end
@@ -55,8 +70,9 @@ class CitizensController < ApplicationController
   private
 
   def citizen_params
-    params.require(:citizen).permit(:name, :email, :cpf, :cns, :phone, :birthdate, :active, address_attributes: [
-      :id, :state_id, :city_id, :zipcode, :street, :neighbourhood, :ibge_code])
+    params.require(:citizen).permit(:name, :email, :cpf, :cns, :phone, :birthdate, :photo, :photo_cache, :active,
+                                    address_attributes: [:id, :state_id, :city_id, :zipcode, :street, :neighbourhood,
+                                                         :complement, :ibge_code])
   end
 
   def city_params

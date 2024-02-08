@@ -23,6 +23,8 @@ gem "cpf_cnpj"
 gem "root_domain"
 gem "sidekiq"
 gem "twilio-ruby"
+gem "carrierwave", "~> 3.0"
+gem "draper"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]

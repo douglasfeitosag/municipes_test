@@ -1,10 +1,12 @@
 class Citizen < ApplicationRecord
   has_one :address
 
-  validates :name, :cpf, :cns, :phone, :birthdate, presence: true
+  validates :name, :cpf, :cns, :phone, :birthdate, :photo, presence: true
   validates :phone, format: { with: /\A\+55\d{2}\d{9}\z/ }
   validates_email_format_of :email, disposable: true
   validates_cpf_format_of :cpf
+
+  mount_uploader :photo, PhotoUploader
 
   accepts_nested_attributes_for :address
 
@@ -19,5 +21,6 @@ class Citizen < ApplicationRecord
 
   before_validation do
     self.phone = phone&.scan(/[+\d]/)&.join("")
+    self.cpf = cpf&.scan(/\d/)&.join("")
   end
 end

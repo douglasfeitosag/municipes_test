@@ -1,0 +1,63 @@
+<div class="grid gap-10">
+  <%= render "components/link", name: t("actions.back"), url: citizens_path %>
+
+  <div class="flex gap-10 justify-between block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.name"), content: @citizen.name } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.email"), content: @citizen.email } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.cpf"), content: @citizen.cpf } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.cns"), content: @citizen.cns } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.phone"), content: @citizen.phone } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.citizen.active"), content: @citizen.active } %>
+    </div>
+  </div>
+
+  <div class="flex gap-10 justify-between block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <% address =  @citizen.address %>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.address.zipcode"), content: address.zipcode } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.address.street"), content: address.street } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.address.complement"), content: address.complement } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.address.neighbourhood"), content: address.neighbourhood } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.address.state_id"), content: address.state } %>
+    </div>
+
+    <div>
+      <%= render partial: "components/card", locals: { title: t("activerecord.attributes.address.city_id"), content: address.city } %>
+    </div>
+  </div>
+
+  <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <%= image_tag(@citizen.photo.url, class: "h-auto max-w-full") %>
+  </div>
+
+  <%= render "components/link", name: t("actions.edit"), url: edit_citizen_path(@citizen) %>
+</div>

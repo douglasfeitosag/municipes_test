@@ -1,6 +1,9 @@
 ---
 en:
   actions:
+    back: Back
+    delete: Delete
+    edit: Edit
     new: New
     save: Save
     search: Search

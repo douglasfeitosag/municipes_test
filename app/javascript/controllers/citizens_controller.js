@@ -21,7 +21,7 @@ export default class extends Controller {
 
         const id = target.data("id") ?? row.data("id")
 
-        window.location.href = `/citizens/${id}/edit`
+        window.location.href = `/citizens/${id}`
     }
 
     fetchData = (searchTerm) => {

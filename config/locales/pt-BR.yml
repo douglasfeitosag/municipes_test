@@ -1,6 +1,9 @@
 ---
 pt-BR:
   actions:
+    back: Voltar
+    delete: Excluir
+    edit: Editar
     new: Novo
     save: Salvar
     search: Pesquisar
@@ -239,4 +242,3 @@ pt-BR:
     sessions:
       new:
         title: Entrar
-
